@@ -1,0 +1,40 @@
+<we-element name="foo">
+  <template>
+    <div>
+      <image src="{{imageUrl}}"></image>
+      <text>{{title}}</text>
+    </div>
+  </template>
+  <script>
+    module.exports = {
+      data: {
+        title: '',
+        imageUrl: ''
+      },
+      methods: {
+        setTitle: function (t) {
+          this.title = t
+        }
+      }
+    }
+  </script>
+</we-element>
+
+<template>
+  <div>
+    <text onclick="test">click to update foo</text>
+    <foo id="fooEl" title="..." image-url="..."></foo>
+  </div>
+</template>
+
+<script>
+  module.exports = {
+    methods: {
+      test: function (e) {
+        var foo = this.$('fooEl')
+        foo.setTitle('...')
+        foo.imageUrl = '...'
+      }
+    }
+  }
+</script>

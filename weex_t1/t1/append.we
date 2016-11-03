@@ -1,0 +1,10 @@
+<template>
+  <container>
+    <container id="world" append="tree">
+      <text>Hello World!</text>
+    </container>
+    <container id="weex" append="node">
+      <text>Hello Weex!</text>
+    </container>
+  </container>
+</template>

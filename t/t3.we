@@ -1,0 +1,37 @@
+<template>
+  <container>
+  	<text>数据绑定</text>
+    <text>The time is {{datetime}}</text>
+    <text>{{title}}</text>
+    <text>{{getTitle()}}</text>
+  </container>
+</template>
+ <script>
+/*不同标签代表的元素/组件有各自的属性,其中一些组件还能有子组件.
+根节点: 每个 template 标签中的最顶层标签，我们称为根节点。
+下面是目前我们支持的三种不同的根节点:
+<container>: 普通根节点
+<scroller>: 滚动器根节点,适用于需要全页滚动的场景
+<list>: 列表根节点,适用于其中包含重复的子元素的列表场景
+目前Weex仅支持以上三种根节点*/
+/*
+weex 遵循 HTML属性 命名规范 , 所以属性命名时 请不要使用陀峰格式(CamelCase) , 采用以“-”分割的long-name形式.
+*/
+/*
+<script>中的代码遵循 JavaScript(ES5)语法. 描述页面中的数据和页面的行为。 
+*/
+  module.exports = {
+    data: {
+      title: 'Alibaba',
+      datetime: null
+    },
+    methods: {
+      getTitle: function () {
+        return 'Weex Team'
+      }
+    },
+    created: function() {
+      this.datetime = new Date().toLocaleString()
+    }
+  }
+ </script>

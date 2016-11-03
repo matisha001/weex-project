@@ -1,0 +1,18 @@
+  <template>
+    <container>
+      <text id="top">Top</text>
+      <container style="height: 1000; background-color: #999999;">
+      </container>
+      <text onclick="back2Top">Back to Top</text>
+    </container>
+  </template>
+  <script>
+    module.exports = {
+      methods: {
+        back2Top: function () {
+          var top = this.$('top')
+          console.log(this)
+        }
+      }
+    }
+    </script>

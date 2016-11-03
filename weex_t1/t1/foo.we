@@ -1,0 +1,14 @@
+<template>
+  <container style="flex-direction: row;">
+    <image src="{{img}}"></image>
+    <text>{{text}}</text>
+  </container>
+</template>
+<script>
+  module.exports = {
+    data: {
+      text: null,
+      img: null
+    }
+  }
+</script>

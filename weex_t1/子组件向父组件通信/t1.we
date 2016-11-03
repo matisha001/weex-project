@@ -1,0 +1,14 @@
+<template>
+  <foo title="111" imageUrl="http://t.cn/RGE31hq"></foo>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.$on('notify', function(e) {
+        //  当图片元素<foo>被点击时，触发回调函数
+        // e.detail 值为  `{a: 1}`
+      })
+    }
+  }
+</script>

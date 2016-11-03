@@ -1,0 +1,19 @@
+<template>
+  <bar  class="red" list="{{list}}"></bar>
+</template>
+<script>
+  module.exports = {
+    data: {
+      list: [
+		    {text: 'Java', img: 'http://t.cn/RGE3uo9'},
+        {text: 'Objective C', img: 'http://t.cn/RGE31hq'},
+        {text: 'JavaScript', img: 'http://t.cn/RGE3AJt'}
+      ]
+    }
+  }
+</script>
+<style>
+	.red{
+		background: #ccc;
+	}
+</style>

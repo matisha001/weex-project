@@ -1,0 +1,133 @@
+/*<template>
+  <container>
+    <text style="font-size: {{title.size}}">{{title.value}}</text>
+  </container>
+</template>
+<script>
+  module.exports = {
+    data: {
+      title: {
+        size: 48,
+        value: 'Alibaba Weex Team'
+      }
+    }
+  }
+ </script> 
+In-template 表达式
+进行数据绑定时, Weex支持一些简单的javascript表达式
+每个绑定只能包含单个表达式
+  *//*
+in-template表达式相比于简单的操作符方便多了. 但如果需要在模板里实现更多的逻辑判断,你可以使用'computed property
+<template>
+  <container style="flex-direction: row;">
+    <text>{{fullName}}</text>
+    <text onclick="changeName"></text>
+  </container>
+</template>
+<script>
+  module.exports = {
+    data: {
+      firstName: 'John',
+      lastName: 'Smith'
+    },
+    computed: {
+      fullName: {
+        get: function() {
+          return this.firstName + ' ' + this.lastName
+        },
+        set: function(v) {
+          var s = v.split(' ')
+          this.firstName = s[0]
+          this.lastName = s[1]
+        }
+      }
+    },
+    methods: {
+      changeName: function() {
+        this.fullName = 'Terry King'
+      }
+    }
+  }
+</script>
+data 和 methods 不能有重复的字段. 因为在执行的上下文中 -- this, 能同时指向这两者.
+  *//*
+style 或 class绑定
+组件的样式能够通过style属性进行绑定
+<template>
+  <text style="font-size: {{size}}; color: {{color}}; ...">...</text>
+</template>
+样式也能够通过class属性实现绑定,多个classname通过空格分隔
+<template>
+  <container>
+    <text class="{{size}}"></text>
+    <text class="title {{status}}"></text>
+  </container>
+</template>
+如果{{size}} 和 {{status}} 是空值, 就只有class="title" 会被渲染
+  *//*
+以on...开头的就是用于指定事件处理器的属性, 属性名中'on'之后的部分就是事件的类型, 属性的值就是对应进行事件处理的函数名. 不需要添加mustache语法中的大括号或者函数调用时的圆括号.
+<template>
+  <text onclick="toggle">Toggle</text>
+</template>
+
+<script>
+  module.exports = {
+    methods: {
+      toggle: function () {
+        // todo
+      }
+    }
+  }
+</script>
+  *//*
+if & repeat
+if 属性能够通过true/false值控制组建是否显示.
+<template>
+  <container style="flex-direction: column;">
+    <text onclick="toggle">Toggle</text>
+    <image src="..." if="{{shown}}"></image>
+  </container>
+</template>
+<script>
+  module.exports = {
+    data: {
+      shown: true
+    },
+    methods: {
+      toggle: function () {
+        this.shown = !this.shown
+      }
+    }
+  }
+  //Weex通过repeat属性来生成列表.
+修改 data 中的数组时，在写法上会受到一定的限制，具体如下
+直接通过 index 修改数组的某个项目 (如 vm.items[0] = {};) 是不会触发视图自动更新的。
+我们在数组的原型上提供了一个额外的方法：$set(index, item).
+// 和 `example1.items[0] = ...` 作用相同，但会自动触发视图更新
+example1.items.$set(0, { childMsg: 'Changed!'})
+直接通过修改 length 来改变数组长度 (如 vm.items.length = 0) 也是不会触发视图自动更新的。
+我们推荐您直接赋值一个新的空数组把旧的替换掉。
+// 和 `example2.items.length = 0` 作用相同，但会自动触发视图更新
+example2.items = []
+</script>
+  *//*
+static
+static 属性可以取消数据绑定机制，从而数据更新不会再同步到 UI 界面。
+<template>
+  <div static>
+    <text>{{ word }}</text>
+  </div>
+</template>
+<script>
+  module.exports = {
+    ready: function() {
+      this.word = 'Data changes'
+    },
+    data: {
+      word: 'Hello, static'
+    }
+  }
+</script>
+添加 static 关键字，渲染结果会是 Hello, static，相当于渲染一个静态的节点，ready 函数中对数据 word 的改变不会被监听，从而 text 值不会改变。
+static 属性设计的目的是为了降低长列表、纯静态页面的内存开销。小心的使用它，因为它可能会中断你的页面逻辑。
+  */

@@ -1,0 +1,19 @@
+<template>
+  <div>
+    <image src="{{imageUrl}}" onclick="test"></image>
+    <text>{{title}}</text>
+  </div>
+</template>
+<script>
+  module.exports = {
+    data: {
+      title: '',
+      imageUrl: ''
+    },
+    methods: {
+      test: function () {
+        this.$dispatch('notify', {a: 1})
+      }
+    }
+  }
+</script>

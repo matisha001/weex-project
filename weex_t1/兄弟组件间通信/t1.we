@@ -1,0 +1,43 @@
+<we-element name="foo">
+  <template>...</template>
+  <script>
+    module.exports = {
+      methods: {
+        callbar: function () {
+          this.$dispatch('callbar', {a: 1})
+        }
+      }
+    }
+  </script>
+</we-element>
+
+<we-element name="bar">
+  <template>...</template>
+  <script>
+    module.exports = {
+      created: function() {
+        this.$on('callbar', function(e) {
+          // e.detail.a
+        })
+      }
+    }
+  </script>
+</we-element>
+
+<template>
+  <div>
+    <foo></foo>
+    <bar></bar>
+  </div>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      var self = this
+      this.$on('callbar', function(e) {
+        self.$broadcast('callbar', e.detail)
+      })
+    }
+  }
+</script>

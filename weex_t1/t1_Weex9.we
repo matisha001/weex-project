@@ -1,0 +1,15 @@
+<template>
+	<text id="matisha" onclick="somemethod">7328389298</text>
+</template>
+<script>
+module.exports = {
+    methods: {
+        somemethod: function() {
+            console.log(this.$el(matisha))
+            console.log(this.$vm(matisha))
+            console.log($getConfig())
+        }
+    }
+}
+$(id)
+</script>
